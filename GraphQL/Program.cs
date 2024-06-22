@@ -30,6 +30,7 @@ using (var scope = app.Services.CreateScope())
 
 // Configure the HTTP request pipeline.
 // if (app.Environment.IsDevelopment())
+// I know this isn't what you'd do in production, but it's a quick way to get started with testing and development
 // {
 app.UseSwagger();
 app.UseSwaggerUI();

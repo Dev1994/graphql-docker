@@ -1,6 +1,9 @@
 # Create a stage for building the application.
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
 
+EXPOSE 8080
+EXPOSE 8081
+
 COPY . /source
 
 WORKDIR /source
