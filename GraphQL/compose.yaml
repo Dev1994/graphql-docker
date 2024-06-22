@@ -8,6 +8,7 @@ services:
     depends_on:
       ms-sql-server:
         condition: service_healthy
+    restart: always
 
   ms-sql-server:
     environment:
