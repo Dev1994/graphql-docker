@@ -15,8 +15,6 @@ builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>();
 
-// Read the connection string from the appsettings.json file
-builder.Configuration.AddJsonFile("appsettings.json");
 builder.Services.AddDbContext<GraphQlDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("GraphQLDatabase")));
 
 var app = builder.Build();

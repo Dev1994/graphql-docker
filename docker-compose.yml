@@ -1,10 +1,14 @@
+version: '3.4'
+
 services:
-  app:
+  graphql:
+    image: ${DOCKER_REGISTRY-}graphql
     build:
-      context: .
-      target: final
+      context: GraphQL
+      dockerfile: Dockerfile
     ports:
       - 8080:8080
+    env_file: dev.env
     depends_on:
       ms-sql-server:
         condition: service_healthy
@@ -15,7 +19,6 @@ services:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: P@ssw0rd
     image: mcr.microsoft.com/mssql/server:2022-latest
-    restart: always
     healthcheck:
         test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P P@ssw0rd -Q 'SELECT 1' || exit 1"]
         interval: 10s
@@ -23,10 +26,10 @@ services:
         start_period: 10s
         timeout: 3s
     ports:
-      - 1433:1433
+      - 1434:1433
+    restart: always
     volumes:
       - mssql-data:/var/opt/mssql
 
 volumes:
   mssql-data:
-
